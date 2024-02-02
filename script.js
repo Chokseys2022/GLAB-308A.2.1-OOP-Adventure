@@ -48,15 +48,14 @@ const adventurer = {
 const diceRollResult = adventurer.roll();
 console.log(`${adventurer.name} rolled a ${diceRollResult}!`);
 
-
 // Part 2: Class Fantasy
 class Character {
-    constructor (name) {
-      this.name = name;
-      this.health = 100;
-      this.inventory = [];
-    }
+  constructor(name) {
+    this.name = name;
+    this.health = 100;
+    this.inventory = [];
   }
+}
 
 //   Re-create Robin
 const robin = new Character("Robin");
@@ -66,3 +65,29 @@ robin.companion.type = "Cat";
 robin.companion.companion = new Character("Frank");
 robin.companion.companion.type = "Flea";
 robin.companion.companion.inventory = ["small hat", "sunglasses"];
+
+// Part 3: Class Features
+class Adventurer extends Character {
+  constructor(name, role) {
+    super(name);
+    // Adventurers have specialized roles.
+    this.role = role;
+    // Every adventurer starts with a bed and 50 gold coins.
+    this.inventory.push("bedroll", "50 gold coins");
+    this.level = 1;
+    this.experience = 0;
+    this.skill = [];
+  }
+  // Adventurers have the ability to scout ahead of them.
+  scout() {
+    console.log(`${this.name} is scouting ahead...`);
+    super.roll();
+  }
+
+  // Additional method for adventurers
+  levelUp() {
+    console.log(`${this.name} have moved up`);
+    this.level++;
+    this.health += 10;
+  }
+}
